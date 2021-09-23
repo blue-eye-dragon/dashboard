@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+		<title>电竞酒店</title>
+		<link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/jquery.growl.css">
+	</head>
+	
+	<body>
+    <div id="app">
+		  <div class="header">
+		  	<h1 class="header-title">电竞设备管理平台</h1>
+		  </div>
+		  <div class="wrapper">
+		  	<div class="content">
+		  		<div class="col col-l">
+		  			<div class="xpanel-wrapper xpanel-wrapper-100">
+		  				<div class="xpanel xpanel-l-t">
+		  					<div class="title">
+                  <img src="./img/业绩排名.png" alt="" style="vertical-align: middle;width: 30px;"> 
+                  酒店设备上线排名</div>
+                <div class="ranking" 
+                     v-for="(item,i) in hotelEquipment"
+                     key="i">
+                  <div class="num">{{ i + 1}}</div>
+                  <div class="rankingContent">
+                    <div style="width: 70%;">{{item.name}}</div>
+                    <div style="display: flex;margin: 5px 0;font-size: 12px;flex:1">
+                     <div class="col-l">上线房间数: <span style="font-size: 16px;">{{item.house}}</span> </div>
+                     <div class="col-l">上线设备数: <span style="font-size: 16px;">{{item.equipment}}</span> </div>
+                   </div>
+                  </div>
+                </div>
+                <!-- <table style="color: aliceblue;table-layout: fixed;width: 100%;" border="1">
+                  <tr>
+                    <td style="width: 30%;text-align: center;">酒店名称</td>
+                    <td style="width: 35%;text-align: center;">上线房间数</td>
+                    <td style="width: 35%;text-align: center;">上线设备数</td>
+                  </tr>
+                  <tr v-for="(item,index) in hotelEquipment"
+                      key="index">
+                    <td style="text-align: center;">{{item.name}}</td>
+                    <td style="text-align: center;">{{item.house}}</td>
+                    <td style="text-align: center;">{{item.equipment}}</td>
+                  </tr>
+                </table> -->
+		  				</div>
+		  			</div>
+		  		</div>
+		  		<div class="col col-c">
+		  			<div class="xpanel-wrapper xpanel-wrapper-100" style="padding-top: 20px;">
+		  				<div class="xpanel centerng">
+                <div class="box1 itemBox"></div>
+                <div class="dateTime"></div>
+                <div class="box2 itemBox">{{workTable.hotelNum}}</div>
+                <div class="hotelNum">酒店总数</div>
+                <div class="box3 itemBox">{{workTable.houseNum}}</div>
+                <div class="houseNum">房间总数</div>
+                <div class="box4 itemBox">{{workTable.province}}</div>
+                <div class="province">省份</div>
+                <div class="box5 itemBox">{{workTable.equipmentNum}}</div>
+                <div class="equipmentNum">设备总数</div>
+                <div class="box6 itemBox">{{workTable.useEquipment}}</div>
+                <div class="useEquipment">上线设备</div>
+		  				</div>
+		  			</div>
+		  			<!-- <div class="xpanel-wrapper xpanel-wrapper-25">
+		  				<div class="xpanel xpanel-c-b">
+		  					<div class="title title-long"></div>
+		  				</div>
+		  			</div> -->
+		  		</div>
+		  		<div class="col col-r">
+		  			<div class="xpanel-wrapper xpanel-wrapper-100">
+		  				<div class="xpanel xpanel-r-t">
+                <div class="title">
+                  <img src="./img/告警数据.png" alt="" style="vertical-align: text-bottom;width: 30px;"> 
+                  告警详情
+                </div>
+                <div class="barTitle">
+                  告警数：<span class="barNum">300</span>
+                </div>
+                <div class="xpanel-wrapper-78 alarmBox">
+                  <ul class="alarmscroll">
+                    <li v-for="(item,i) in alarmDetails"
+                        key="i">
+                      <div>
+                        酒店名称：<span>{{item.name}}</span>
+                      </div>
+                      <div>
+                        房间号: <span>{{item.houseNum}}</span>
+                      </div>
+                      <div>
+                        被窃设备信息: <span>{{item.equipment}}</span>
+                      </div>
+                      <div>
+                        被窃部件信息: <span>{{item.details}}</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+		  				</div>
+		  			</div>
+		  		</div>
+		  	</div>
+		  </div>
+    </div>
+	</body>
+  <script src="js/axios-v0.21.1.js"></script>
+  <script src="js/echarts-5.1.2.min.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery.growl.js"></script>
+  <script src="js/utils-axios.js"></script>
+  <script src="js/vue-2.6.4.js"></script>
+  <script src="js/initdata.js"></script>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data() {
+        return {
+          hotelEquipment: [
+            {
+              name: '电竞酒店1',
+              house: '100',
+              equipment: '300'
+            },
+            {
+              name: '电竞酒店2',
+              house: '200',
+              equipment: '320'
+            },
+            {
+              name: '电竞酒店3',
+              house: '200',
+              equipment: '320'
+            },
+            {
+              name: '电竞酒店4',
+              house: '200',
+              equipment: '320'
+            },
+            {
+              name: '电竞酒店5',
+              house: '200',
+              equipment: '320'
+            },
+            {
+              name: '电竞酒店6',
+              house: '200',
+              equipment: '320'
+            },
+            {
+              name: '电竞酒店7',
+              house: '200',
+              equipment: '320'
+            },
+            {
+              name: '电竞酒店8',
+              house: '200',
+              equipment: '320'
+            },
+            {
+              name: '电竞酒店9',
+              house: '200',
+              equipment: '320'
+            },
+            {
+              name: '电竞酒店10',
+              house: '200',
+              equipment: '320'
+            }
+          ],
+          alarmDetails: [
+            {
+              name: '酒店名称1',
+              houseNum: '1111',
+              equipment: 'win10笔记本',
+              details: '显卡3003'
+            },
+            {
+              name: '酒店名称2',
+              houseNum: '2222',
+              equipment: 'win12笔记本',
+              details: '显卡3002'
+            },
+            {
+              name: '酒店名称3',
+              houseNum: '3333',
+              equipment: 'win13笔记本',
+              details: '显卡3003'
+            },
+            {
+              name: '酒店名称4',
+              houseNum: '4444',
+              equipment: 'win14笔记本',
+              details: '显卡3004'
+            },
+            {
+              name: '酒店名称5',
+              houseNum: '5555',
+              equipment: 'win15笔记本',
+              details: '显卡3005'
+            },
+            {
+              name: '酒店名称6',
+              houseNum: '6666',
+              equipment: 'win16笔记本',
+              details: '显卡3006'
+            },
+            {
+              name: '酒店名称7',
+              houseNum: '7777',
+              equipment: 'win17笔记本',
+              details: '显卡3007'
+            },
+            {
+              name: '酒店名称8',
+              houseNum: '8888',
+              equipment: 'win18笔记本',
+              details: '显卡3008'
+            },
+            {
+              name: '酒店名称9',
+              houseNum: '9999',
+              equipment: 'win19笔记本',
+              details: '显卡3009'
+            },
+            {
+              name: '酒店名称10',
+              houseNum: '10101010',
+              equipment: 'win110笔记本',
+              details: '显卡30010'
+            },
+            {
+              name: '酒店名称11',
+              houseNum: '11111111',
+              equipment: 'win111笔记本',
+              details: '显卡30011'
+            },
+            {
+              name: '酒店名称12',
+              houseNum: '12121212',
+              equipment: 'win112笔记本',
+              details: '显卡30012'
+            },
+            {
+              name: '酒店名称1',
+              houseNum: '1111',
+              equipment: 'win10笔记本',
+              details: '显卡3003'
+            },
+            {
+              name: '酒店名称2',
+              houseNum: '2222',
+              equipment: 'win12笔记本',
+              details: '显卡3002'
+            },
+            {
+              name: '酒店名称3',
+              houseNum: '3333',
+              equipment: 'win13笔记本',
+              details: '显卡3003'
+            },
+            {
+              name: '酒店名称4',
+              houseNum: '4444',
+              equipment: 'win14笔记本',
+              details: '显卡3004'
+            },
+            {
+              name: '酒店名称5',
+              houseNum: '5555',
+              equipment: 'win15笔记本',
+              details: '显卡3005'
+            }
+          ],
+          workTable: {
+            dateTime: '12',
+            hotelNum: '152',
+            houseNum: '145',
+            province: '湖南',
+            equipmentNum: '234',
+            useEquipment: '123'
+          }
+        }
+      },
+    })
+  </script>
+</html>
