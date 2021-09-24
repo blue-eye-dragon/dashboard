@@ -54,25 +54,96 @@
 		  		<div class="col col-c">
 		  			<div class="xpanel-wrapper xpanel-wrapper-100" style="padding-top: 20px;">
 		  				<div class="xpanel centerng">
-                <div class="box1 itemBox"></div>
+                <div class="box1 itemBox">重庆</div>
                 <div class="dateTime"></div>
-                <div class="box2 itemBox">{{workTable.hotelNum}}</div>
-                <div class="hotelNum">酒店总数</div>
-                <div class="box3 itemBox">{{workTable.houseNum}}</div>
-                <div class="houseNum">房间总数</div>
-                <div class="box4 itemBox">{{workTable.province}}</div>
-                <div class="province">省份</div>
-                <div class="box5 itemBox">{{workTable.equipmentNum}}</div>
-                <div class="equipmentNum">设备总数</div>
-                <div class="box6 itemBox">{{workTable.useEquipment}}</div>
-                <div class="useEquipment">上线设备</div>
+                <div class="box2 itemBox">{{workTable[0].province}}</div>
+                <div class="hotelNum">
+                  <div class="iconDiv">
+                    <ul class="showIcon">
+                      <li v-for="(item,i) in iconList"
+                          key="i">
+                        <img :src="item.icon" alt="">
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="iconNum">
+                    <ul class="showIcon">
+                      <li>{{workTable[0].equipmentNum}}</li>
+                      <li>{{workTable[0].useEquipment}}</li>
+                      <li>{{workTable[0].hotelNum}}</li>
+                      <li>{{workTable[0].houseNum}}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="box3 itemBox">{{workTable[1].province}}</div>
+                <div class="houseNum">
+                  <div class="iconDiv">
+                    <ul class="showIcon">
+                      <li v-for="(item,i) in iconList"
+                          key="i">
+                        <img :src="item.icon" alt="">
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="iconNum">
+                    <ul class="showIcon">
+                      <li>{{workTable[1].equipmentNum}}</li>
+                      <li>{{workTable[1].useEquipment}}</li>
+                      <li>{{workTable[1].hotelNum}}</li>
+                      <li>{{workTable[1].houseNum}}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="box4 itemBox">{{workTable[2].province}}</div>
+                <div class="province">
+                  <div class="iconDiv">
+                    <ul class="showIcon">
+                      <li v-for="(item,i) in iconList"
+                          key="i">
+                        <img :src="item.icon" alt="">
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="iconNum">
+                    <ul class="showIcon">
+                      <li>{{workTable[2].equipmentNum}}</li>
+                      <li>{{workTable[2].useEquipment}}</li>
+                      <li>{{workTable[2].hotelNum}}</li>
+                      <li>{{workTable[2].houseNum}}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="box5 itemBox">{{workTable[3].province}}</div>
+                <div class="equipmentNum">
+                  <div class="iconDiv">
+                    <ul class="showIcon">
+                      <li v-for="(item,i) in iconList"
+                          key="i">
+                        <img :src="item.icon" alt="">
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="iconNum">
+                    <ul class="showIcon">
+                      <li>{{workTable[3].equipmentNum}}</li>
+                      <li>{{workTable[3].useEquipment}}</li>
+                      <li>{{workTable[3].hotelNum}}</li>
+                      <li>{{workTable[3].houseNum}}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="box6 itemBox">广州</div>
+                <div class="useEquipment"></div>
+                <div class="iconList">
+                  <ul>
+                    <li v-for="(item,i) in iconList"
+                        key="i">
+                      <img :src="item.icon" alt="">: <span>{{item.name}}</span>
+                    </li>
+                  </ul>
+                </div>
 		  				</div>
 		  			</div>
-		  			<!-- <div class="xpanel-wrapper xpanel-wrapper-25">
-		  				<div class="xpanel xpanel-c-b">
-		  					<div class="title title-long"></div>
-		  				</div>
-		  			</div> -->
 		  		</div>
 		  		<div class="col col-r">
 		  			<div class="xpanel-wrapper xpanel-wrapper-100">
@@ -82,7 +153,7 @@
                   告警详情
                 </div>
                 <div class="barTitle">
-                  告警数：<span class="barNum">300</span>
+                  设备硬件异常告警：<span class="barNum">300</span>
                 </div>
                 <div class="xpanel-wrapper-78 alarmBox">
                   <ul class="alarmscroll">
@@ -116,6 +187,7 @@
   <script src="js/jquery.growl.js"></script>
   <script src="js/utils-axios.js"></script>
   <script src="js/vue-2.6.4.js"></script>
+  <script src="js/Copyright.js"></script>
   <script src="js/initdata.js"></script>
   <script>
     var vm = new Vue({
@@ -177,115 +249,155 @@
           alarmDetails: [
             {
               name: '酒店名称1',
-              houseNum: '1111',
-              equipment: 'win10笔记本',
-              details: '显卡3003'
+              houseNum: '3021',
+              equipment: 'LAPTOP-93O6SH30',
+              details: '显卡丢失'
             },
             {
               name: '酒店名称2',
-              houseNum: '2222',
-              equipment: 'win12笔记本',
-              details: '显卡3002'
+              houseNum: '3022',
+              equipment: 'LAPTOP-93O6SH30',
+              details: '无法开机'
             },
             {
               name: '酒店名称3',
-              houseNum: '3333',
-              equipment: 'win13笔记本',
-              details: '显卡3003'
+              houseNum: '3023',
+              equipment: 'LAPTOP-93O6SH30',
+              details: '鼠标未连接'
             },
             {
               name: '酒店名称4',
-              houseNum: '4444',
-              equipment: 'win14笔记本',
-              details: '显卡3004'
+              houseNum: '3024',
+              equipment: 'LAPTOP-93O6SH30',
+              details: '键盘更换'
             },
             {
               name: '酒店名称5',
-              houseNum: '5555',
-              equipment: 'win15笔记本',
-              details: '显卡3005'
+              houseNum: '3025',
+              equipment: 'LAPTOP-93O6SH30',
+              details: '鼠标未连接'
             },
-            {
-              name: '酒店名称6',
-              houseNum: '6666',
-              equipment: 'win16笔记本',
-              details: '显卡3006'
-            },
-            {
-              name: '酒店名称7',
-              houseNum: '7777',
-              equipment: 'win17笔记本',
-              details: '显卡3007'
-            },
-            {
-              name: '酒店名称8',
-              houseNum: '8888',
-              equipment: 'win18笔记本',
-              details: '显卡3008'
-            },
-            {
-              name: '酒店名称9',
-              houseNum: '9999',
-              equipment: 'win19笔记本',
-              details: '显卡3009'
-            },
-            {
-              name: '酒店名称10',
-              houseNum: '10101010',
-              equipment: 'win110笔记本',
-              details: '显卡30010'
-            },
-            {
-              name: '酒店名称11',
-              houseNum: '11111111',
-              equipment: 'win111笔记本',
-              details: '显卡30011'
-            },
-            {
-              name: '酒店名称12',
-              houseNum: '12121212',
-              equipment: 'win112笔记本',
-              details: '显卡30012'
-            },
+            // {
+            //   name: '酒店名称6',
+            //   houseNum: '6666',
+            //   equipment: 'win16笔记本',
+            //   details: '显卡3006'
+            // },
+            // {
+            //   name: '酒店名称7',
+            //   houseNum: '7777',
+            //   equipment: 'win17笔记本',
+            //   details: '显卡3007'
+            // },
+            // {
+            //   name: '酒店名称8',
+            //   houseNum: '8888',
+            //   equipment: 'win18笔记本',
+            //   details: '显卡3008'
+            // },
+            // {
+            //   name: '酒店名称9',
+            //   houseNum: '9999',
+            //   equipment: 'win19笔记本',
+            //   details: '显卡3009'
+            // },
+            // {
+            //   name: '酒店名称10',
+            //   houseNum: '10101010',
+            //   equipment: 'win110笔记本',
+            //   details: '显卡30010'
+            // },
+            // {
+            //   name: '酒店名称11',
+            //   houseNum: '11111111',
+            //   equipment: 'win111笔记本',
+            //   details: '显卡30011'
+            // },
+            // {
+            //   name: '酒店名称12',
+            //   houseNum: '12121212',
+            //   equipment: 'win112笔记本',
+            //   details: '显卡30012'
+            // },
             {
               name: '酒店名称1',
-              houseNum: '1111',
-              equipment: 'win10笔记本',
-              details: '显卡3003'
+              houseNum: '3021',
+              equipment: 'LAPTOP-93O6SH30',
+              details: '显卡丢失'
             },
             {
               name: '酒店名称2',
-              houseNum: '2222',
-              equipment: 'win12笔记本',
-              details: '显卡3002'
+              houseNum: '3022',
+              equipment: 'LAPTOP-93O6SH30',
+              details: '无法开机'
             },
             {
               name: '酒店名称3',
-              houseNum: '3333',
-              equipment: 'win13笔记本',
-              details: '显卡3003'
+              houseNum: '3023',
+              equipment: 'LAPTOP-93O6SH30',
+              details: '鼠标未连接'
             },
             {
               name: '酒店名称4',
-              houseNum: '4444',
-              equipment: 'win14笔记本',
-              details: '显卡3004'
+              houseNum: '3024',
+              equipment: 'LAPTOP-93O6SH30',
+              details: '键盘更换'
             },
             {
               name: '酒店名称5',
-              houseNum: '5555',
-              equipment: 'win15笔记本',
-              details: '显卡3005'
+              houseNum: '3025',
+              equipment: 'LAPTOP-93O6SH30',
+              details: '鼠标未连接'
+            },
+          ],
+          workTable: [
+            {
+              hotelNum: '152',
+              houseNum: '145',
+              province: '深圳',
+              equipmentNum: '234',
+              useEquipment: '123'
+            },
+            {
+              hotelNum: '152',
+              houseNum: '145',
+              province: '北京',
+              equipmentNum: '234',
+              useEquipment: '123'
+            },
+            {
+              hotelNum: '152',
+              houseNum: '145',
+              province: '全国',
+              equipmentNum: '234',
+              useEquipment: '123' 
+            },
+            {
+              hotelNum: '152',
+              houseNum: '145',
+              province: '上海',
+              equipmentNum: '234',
+              useEquipment: '123'
             }
           ],
-          workTable: {
-            dateTime: '12',
-            hotelNum: '152',
-            houseNum: '145',
-            province: '湖南',
-            equipmentNum: '234',
-            useEquipment: '123'
-          }
+          iconList: [
+            {
+              icon: './img/硬件.png',
+              name: '硬件总数'
+            },
+            {
+              icon: './img/设备.png',
+              name: '上线设备总数'
+            },
+            {
+              icon: './img/酒店.png',
+              name: '酒店总数',
+            },
+            {
+              icon: './img/房间.png',
+              name: '房间总数',
+            },
+          ]
         }
       },
     })

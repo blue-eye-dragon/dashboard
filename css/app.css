@@ -5,11 +5,17 @@ html, body {
 	width:100%;
 	height:100%;
 	font-family:"microsoft yahei", arial, sans-serif;
-	background-color:#070D3A;
+	background-color:#0E1045;
 	overflow-x:hidden;
 	overflow-y:auto;
 }
 body {margin:0 auto;min-width:375px;max-width:1920px;}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
 /********** Layout **********/
 .header {position:relative;height:90px;box-sizing:border-box;background: url("../img/header.png");background-size: 100% 100%;}
@@ -153,7 +159,7 @@ body {margin:0 auto;min-width:375px;max-width:1920px;}
 }
 
 .barTitle {
-  color: #e9c29d;
+  color: #e9c292;
   text-align: center;
   height: 15%;
 }
@@ -161,7 +167,7 @@ body {margin:0 auto;min-width:375px;max-width:1920px;}
 .barNum {
   font-size: 40px;
   margin: 30px;
-  color: #44a7df;
+  color: red;
 }
 
 .alarmBox {
@@ -170,12 +176,11 @@ body {margin:0 auto;min-width:375px;max-width:1920px;}
 }
 
 .alarmscroll {
-  color: #e9c292;
+  color: red;
   list-style: none;
   padding: 0 5px;
-  font-size: 14px;
+  font-size: 16px;
   margin: 0;
-  padding-bottom: 15px;
 }
 
 .alarmscroll li {
@@ -235,37 +240,37 @@ body {margin:0 auto;min-width:375px;max-width:1920px;}
 
 .hotelNum {
   position: absolute;
+  display: flex;
   top: 50%;
   left: 14%;
   width: 12%;
-  height: 4%;
   color: #fff;
 }
 
 .houseNum {
   position: absolute;
+  display: flex;
     top: 55%;
     left: 34%;
     width: 12%;
-    height: 4%;
     color: #fff;
 }
 
 .province {
   position: absolute;
+  display: flex;
     top: 55%;
     left: 55%;
     width: 12%;
-    height: 4%;
     color: #fff;
 }
 
 .equipmentNum {
   position: absolute;
+  display: flex;
     top: 50%;
     left: 75.5%;
     width: 12%;
-    height: 4%;
     color: #fff;
 }
 
@@ -276,4 +281,49 @@ body {margin:0 auto;min-width:375px;max-width:1920px;}
     width: 12%;
     height: 4%;
     color: #fff;
+}
+
+.iconList {
+  position: absolute;
+  bottom: 15%;
+  width: 100%;
+}
+
+.iconList ul {
+  display: flex;
+  width: 100%;
+  list-style: none;
+  color: #44a7df;
+  justify-content: space-between;
+}
+
+.iconList ul img {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+/* .iconList ul li {
+  margin-right: 5%;
+} */
+
+.showIcon {
+  margin-top: 10px;
+  color: #44a7df;
+}
+
+.showIcon li {
+  margin-bottom: 5px;
+}
+
+.showIcon img{
+  width: 70%;
+  vertical-align: middle;
+}
+
+.iconDiv {
+  flex: 1;
+}
+
+.iconNum {
+  flex: 2;
 }
